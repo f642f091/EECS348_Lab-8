@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 TARGET = matrix_test
-SRC = matrix.cpp tests.cpp
+SRC = matrix.cpp tests/tests.cpp
 INC = matrix.hpp
 
 all: $(TARGET)
