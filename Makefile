@@ -1,13 +1,18 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
-TARGET = matrix_test
-SRC = matrix.cpp tests/tests.cpp
-INC = matrix.hpp
+CXXFLAGS = -std=c++17 -Wall -I. -Ithird_party/googletest/googletest/include -Ithird_party/googletest/googletest -pthread
 
-all: $(TARGET)
+# Source files
+MATRIX_SRC = matrix.cpp
+HEADER = matrix.hpp
 
-$(TARGET): $(SRC) $(INC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC) -lgtest -lgtest_main -pthread
+# Targets
+all: matrix_test matrix_cli
+
+matrix_test: $(MATRIX_SRC) tests/tests.cpp test_main.cpp $(HEADER)
+	$(CXX) $(CXXFLAGS) -o matrix_test $(MATRIX_SRC) tests/tests.cpp test_main.cpp third_party/googletest/googletest/src/gtest-all.cc
+
+matrix_cli: $(MATRIX_SRC) main.cpp $(HEADER)
+	$(CXX) $(CXXFLAGS) -o matrix_cli $(MATRIX_SRC) main.cpp
 
 clean:
-	rm -f $(TARGET)
+	rm -f matrix_test matrix_cli
