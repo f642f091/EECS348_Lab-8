@@ -1,0 +1,1 @@
+After cloning the repo, make sure to run make clean. Then after running make it gives you 2 exec file. "matrix_test" shows how it passes all the tests, "matrix_cli" asks for a file, I already added matrix.txt to test the program, it can be modified based on rubric.
